@@ -1,46 +1,140 @@
-# Getting Started with Create React App
+# Front-End Challenge 🏅
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introdução
 
-## Available Scripts
+Este é um desafio para testar seus conhecimentos de Front-end;
 
-In the project directory, you can run:
+O objetivo é avaliar a sua forma de estruturação e autonomia em decisões para construir algo escalável utilizando um framework moderno javascript.
 
-### `yarn start`
+Você está livre para usar React.js ou Vue.js ou Angular 8+ no desenvolvimento da solução deste tech challenge.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[SPOILER] As instruções de entrega e apresentação do challenge estão no final deste Readme (=
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Instruções iniciais obrigatórias
 
-### `yarn test`
+- Utilizar o seu github pessoal para publicar o desafio. Confirme que a visibilidade do projeto é pública (não esqueça de colocar no readme a referência a este challenge);
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Case
 
-### `yarn build`
+A empresa Pharma Inc, está trabalhando em um projeto em colaboração com sua base de clientes para facilitar a gestão e visualização da informação dos seus pacientes de maneira simples e objetiva em um Dashboard onde podem listar, filtrar e expandir os dados disponíveis.
+O seu objetivo nesse projeto, é trabalhar no desenvolvimento do Front end que consumirá a API da empresa Pharma Inc seguindo os requisitos propostos neste desafio.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Recursos
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. Estudar a documentação da REST API: https://randomuser.me/documentation
+2. Utilizar React.js ou Vue.js ou Angular 8+ para construir a solução do Challenge;
+3. Utilizar Frameworks CSS ou estilo proprio, recomendamos alguns como:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+      - Tailwind CSS: https://tailwindcss.com/
+      - Material UI: https://material-ui.com/
+      - Angular Material: https://material.angular.io/
+      - Bootstrap: https://getbootstrap.com/
+      - Bulma: https://bulma.io/
 
-### `yarn eject`
+4. Trabalhar em um repositório em seu usuário ou utilizar o seu github pessoal (não esqueça de colocar no readme a referência a este challenge);
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Lista de Pacientes
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+A tela inicial do projeto será um lista de pacientes que deverá conter um buscador para facilitar filtrar todos os que são exibidos na lista, proposta:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![List users](assets/list.png)
 
-## Learn More
+Para obter os dados, utilizaremos a API do Random User:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- https://randomuser.me/api/
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Exemplo da resposta:
+
+```json
+{
+   "results": [
+       {
+           "gender": "female",
+           "name": {
+               "title": "Ms",
+               "first": "Alea",
+               "last": "Christoffersen"
+           }
+       }
+   ],
+   "info": {
+       "seed": "2f10116f1799d353",
+       "results": 1,
+       "page": 1,
+       "version": "1.3"
+   }
+}
+```
+
+Além de realizar a request, devemos aplicar alguns filtros na API:
+
+- O resultado da API deve ser armazenado em um estado global. (Pode ser utilizado Redux, Context, Vuex ou tecnologia equivalente do framework utilizado)
+- Limitar cada requisição da página em  50 resultados para não sobrecarregar a API.
+- Adicionar o parâmetro de paginação para controlar o `Loading more`
+
+### Visualizar paciente
+
+Na coluna de ações da tabela, existe o botão visualizar para expandir os dados dos pacientes. Seguir o modelo proposto:
+
+![View user](assets/view.png)
+
+Devemos exibir os seguintes campos do paciente:
+
+- Imagem
+- Nome completo
+- Email
+- Gênero
+- Data de nascimento
+- Telefone
+- Nacionalidade
+- Endereço
+- ID (Número de identificação)
+- URL para compartilhamento
+
+### URL para compartilhar paciente
+
+Ao acessar a aplicação diretamente por essa URL a aplicação deve abrir o modal com as informações do paciente. 
+
+- A URL deve conter o ID do paciente
+- Abrir o modal com as informações do paciente ao acessar a aplicação por essa URL
+
+## Extras
+
+Além do desafio proposto com as duas telas, temos alguns diferenciais:
+
+- **Diferencial 1** Adicionar um filtro por Gênero na tabela;
+- **Diferencial 2** Configurar o buscador para poder filtrar por nome e nacionalidade;
+- **Diferencial 3** Adicionar o paginador rota para facilitar compartilhar o link e manter a posição na lista;
+- **Diferencial 4** Escrever Unit Tests ou E2E Test na Lista de Pacientes. Escolher a melhor abordagem e biblioteca;
+- **Diferencial 5** Configurar Docker no Projeto para facilitar o Deploy da equipe de DevOps;
+
+## Readme do Repositório
+
+- Deve conter o título do projeto
+- Uma descrição sobre o projeto em frase
+- Deve conter uma lista com linguagem, framework e/ou tecnologias usadas
+- Como instalar e usar o projeto (instruções)
+- Não esqueça o [.gitignore](https://www.toptal.com/developers/gitignore)
+- Se está usando github pessoal, referencie que é um challenge by coodesh 
+
+## Finalização e Instruções para a Apresentação
+
+Avisar sobre a finalização e enviar para correção.
+
+1. Confira se você respondeu o Scorecard da Vaga que chegou no seu email;
+2. Confira se você respondeu o Mapeamento Comportamental que chegou no seu email;
+3. Acesse: [https://coodesh.com/challenges/review](https://coodesh.com/challenges/review);
+4. Adicione o repositório com a sua solução;
+5. Grave um vídeo, utilizando o botão na tela de solicitar revisão da Coodesh, com no máximo 5 minutos, com a apresentação do seu projeto. Foque em pontos obrigatórios e diferenciais quando for apresentar.
+6. Adicione o link da apresentação do seu projeto no README.md.
+7. Verifique se o Readme está bom e faça o commit final em seu repositório;
+8. Confira a vaga desejada;
+9. Envie e aguarde as instruções para seguir no processo. Sucesso e boa sorte. =)
+
+
+## Suporte
+
+Use a [nossa comunidade](https://coodesh.com/desenvolvedores#community) para tirar dúvidas sobre o processo ou envie um e-mail para contato@coodesh.com.
+
+

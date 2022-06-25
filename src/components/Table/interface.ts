@@ -24,7 +24,11 @@ export interface IUser {
           "description": "Kathmandu"
         } */
       },
-      email: string,
+  email: string,
+    dob: {
+        date: string,
+        age: number
+      },
       phone: string,
       "cell": "081-392-1901",
       id: {

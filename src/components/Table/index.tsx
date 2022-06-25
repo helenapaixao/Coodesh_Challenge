@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import API from "../../services/api";
 import { IUser } from "./interface";
+import { format } from "date-fns";
 
 export function TableComponent() {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -24,7 +25,6 @@ export function TableComponent() {
     response
       .then((data) => {
         setUsers(data.data.results);
-
         setLoading(false);
       })
       .catch(() => {
@@ -59,11 +59,10 @@ export function TableComponent() {
             <Tbody key={user.id.value}>
               <Tr>
                 <Td>
-                  {" "}
                   {user.name.first} {user.name.last}
                 </Td>
                 <Td>{user.gender}</Td>
-                <Td>inches</Td>
+                <Td>{format(new Date(user.dob.date), "dd/MM/yyyy")}</Td>
               </Tr>
             </Tbody>
           ))}

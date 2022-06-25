@@ -1,66 +1,73 @@
-
 import { useEffect, useState } from "react";
 import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
 import API from "../../services/api";
-import {IUser} from './interface'
+import { IUser } from "./interface";
 
 export function TableComponent() {
-  const [user, setUsers] = useState<IUser[]>([]);
-
+  const [users, setUsers] = useState<IUser[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-   
-  
-  }, [])
-  
+    const response = API.get("https://randomuser.me/api/?results=10");
+
+    setLoading(true);
+
+    response
+      .then((data) => {
+        setUsers(data.data.results);
+
+        setLoading(false);
+      })
+      .catch(() => {
+        setError(true);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <TableContainer>
-      <Table>
-        <Thead>
-          <Tr>
-            <Th>Name</Th>
-            <Th>Gender</Th>
-            <Th>Birth</Th>
-            <Th>Actions</Th>
-          </Tr>
-        </Thead>
-
-        <Tbody>
-          <Tr>
-            <Td>inches</Td>
-            <Td>inches</Td>
-            <Td>inches</Td>
-            <Td>inches</Td>
-          </Tr>
-          <Tr>
-            <Td>inches</Td>
-            <Td>inches</Td>
-            <Td>inches</Td>
-            <Td>inches</Td>
-          </Tr>
-          <Tr>
-            <Td>inches</Td>
-            <Td>inches</Td>
-            <Td>inches</Td>
-            <Td>inches</Td>
-          </Tr>
-          <Tr>
-            <Td>inches</Td>
-            <Td>inches</Td>
-            <Td>inches</Td>
-            <Td>inches</Td>
-          </Tr>
-        </Tbody>
+      <Table
+        border="1px solid"
+        borderColor="gray.200"
+        borderRadius="lg"
+        width="100%"
+        maxWidth="100%"
+        overflow="auto"
+        fontSize="sm"
+        fontFamily="body"
+        fontWeight="normal"
+      >
+        <>
+          <Thead>
+            <Tr>
+              <Th>Name</Th>
+              <Th>Gender</Th>
+              <Th>Birth</Th>
+              <Th>Actions</Th>
+            </Tr>
+          </Thead>
+          {users.map((user) => (
+            <Tbody key={user.id.value}>
+              <Tr>
+                <Td>
+                  {" "}
+                  {user.name.first} {user.name.last}
+                </Td>
+                <Td>{user.gender}</Td>
+                <Td>inches</Td>
+              </Tr>
+            </Tbody>
+          ))}
+        </>
       </Table>
     </TableContainer>
   );

@@ -16,6 +16,8 @@ import API from "../../services/api";
 import { IUser } from "./interface";
 import { format } from "date-fns";
 import { ContainerButton, Container } from "./style";
+import userDetails from "./userDetails";
+import { Link } from "react-router-dom";
 
 export function TableComponent() {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -54,6 +56,10 @@ export function TableComponent() {
       });
   }
 
+
+
+
+
   return (
     <>
       <Container>
@@ -87,7 +93,13 @@ export function TableComponent() {
                   <Td>{user.gender}</Td>
                   <Td>{format(new Date(user.dob.date), "dd/MM/yyyy")}</Td>
                   <Td>
-                    <Button onClick={onOpen}>visualizar</Button>
+                    <Button>
+                      <Link
+                      to={`/user/${user.name.first}`}
+                      >
+                       visualizar
+                      </Link>
+                     </Button>
                   </Td>
                 </Tr>
               </Tbody>

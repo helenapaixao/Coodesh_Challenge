@@ -1,11 +1,9 @@
-import * as React from "react";
-import Home from './views/Home'
-
+import Routes from './routes'
 import { ChakraProvider } from "@chakra-ui/react";
 function App() {
   return (
     <ChakraProvider>
-      <Home/>
+      <Routes/>
     </ChakraProvider>
   );
 }
